@@ -1,0 +1,21 @@
+plugins {
+    id 'application'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'lista01.rentcars.Locadora'
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}
