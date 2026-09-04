@@ -1,4 +1,4 @@
-package lista01.rentcars;
+package lista.lista1_2_2.rentcars;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -32,39 +32,16 @@ public class Cliente {
         resultado += String.format("=== ==================== ============== ===========" + fimDeLinha);
 
         while (locacoes.hasNext()) {
-            double valorCorrente = 0.0;
-            Locacao cada = locacoes.next();
+            Locacao locacao = locacoes.next();
 
-            // determina valores para cada linha
-            switch (cada.getCarro().getCodigoDoPreco()) {
-                case Automovel.BASICO: // R$ 90.00 por dia
-                    valorCorrente += cada.getDiasAlugado() * 90.00;
-                    break;
-                case Automovel.FAMILIA: // R$ 130.00 por dia
-                    valorCorrente += cada.getDiasAlugado() * 130.00;
-                    break;
-                case Automovel.LUXO: // R$ 200.00 por dia.
-                    valorCorrente += cada.getDiasAlugado() * 200.00;
-                    // Acima de 4 diárias tem 10% de desconto
-                    if (cada.getDiasAlugado() > 4) {
-                        valorCorrente *= 0.9;
-                    }
-                    break;
-            } // switch
-
-            // trata de pontos de alugador frequente
-            pontosDeAlugadorFrequente++;
-            // adiciona bonus para aluguel de um lançamento por pelo menos 2 dias
-            if (cada.getCarro().getCodigoDoPreco() == Automovel.LUXO &&
-                    cada.getDiasAlugado() > 2) {
-                pontosDeAlugadorFrequente += 2;
-            }
+            double valorCorrente = valorLocacao(locacao);
+            pontosDeAlugadorFrequente = pontosLocacao(locacao);
 
             // mostra valores para este aluguel
             sequencia++;
             resultado += String.format("%02d. %-20s %4d R$ %8.2f" + fimDeLinha,
-                    sequencia, cada.getCarro().getDescricao(),
-                    cada.getCarro().getAno(), valorCorrente);
+                    sequencia, locacao.getCarro().getDescricao(),
+                    locacao.getCarro().getAno(), valorCorrente);
             valorTotal += valorCorrente;
         } // while
 
@@ -74,5 +51,39 @@ public class Cliente {
         resultado += "Voce acumulou " + pontosDeAlugadorFrequente +
                 " pontos de alugador frequente";
         return resultado;
+    }
+
+    // Info: tarefa1
+    private double valorLocacao(Locacao locacao) {
+        double valorLocacao = 0.0;
+
+        switch (locacao.getCarro().getCodigoDoPreco()) {
+            case Automovel.BASICO: // R$ 90.00 por dia
+                valorLocacao += locacao.getDiasAlugado() * 90.00;
+                break;
+
+            case Automovel.FAMILIA: // R$ 130.00 por dia
+                valorLocacao += locacao.getDiasAlugado() * 130.00;
+                break;
+
+            case Automovel.LUXO: // R$ 200.00 por dia.
+                valorLocacao += locacao.getDiasAlugado() * 200.00;
+                // Acima de 4 diárias tem 10% de desconto
+                if (locacao.getDiasAlugado() > 4) {
+                    valorLocacao *= 0.9;
+                }
+                break;
+        }    
+        return valorLocacao;
+    }
+
+    // Info: tarefa2
+    private int pontosLocacao(Locacao locacao) {
+        int pontos = 1;
+
+        if (locacao.getCarro().getCodigoDoPreco() == Automovel.LUXO && locacao.getDiasAlugado() > 2) {
+            pontos += 2;
+        }
+        return pontos;
     }
 }

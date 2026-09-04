@@ -1,4 +1,4 @@
-package lista01.rentcars;
+package lista.lista1_2_2.rentcars;
 
 public class Locacao {
     private Automovel carro;

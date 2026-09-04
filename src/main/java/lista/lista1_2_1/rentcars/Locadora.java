@@ -1,4 +1,4 @@
-package lista01.rentcars;
+package lista.lista1_2_1.rentcars;
 
 public class Locadora {
     public static void main(String[] args) {
