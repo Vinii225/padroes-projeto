@@ -1,6 +1,7 @@
 package lista.lista1_2_1.rentcars;
 
 public class Automovel {
+
     public static final int BASICO = 0;
     public static final int FAMILIA = 1;
     public static final int LUXO = 2;

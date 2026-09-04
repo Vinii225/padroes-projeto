@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Cliente {
+
     private String nome;
     private List<Locacao> carrosAlugados = new ArrayList<Locacao>();
 
@@ -55,24 +56,26 @@ public class Cliente {
             // trata de pontos de alugador frequente
             pontosDeAlugadorFrequente++;
             // adiciona bonus para aluguel de um lançamento por pelo menos 2 dias
-            if (cada.getCarro().getCodigoDoPreco() == Automovel.LUXO &&
-                    cada.getDiasAlugado() > 2) {
+            if (cada.getCarro().getCodigoDoPreco() == Automovel.LUXO && cada.getDiasAlugado() > 2) {
                 pontosDeAlugadorFrequente += 2;
             }
 
             // mostra valores para este aluguel
             sequencia++;
-            resultado += String.format("%02d. %-20s %4d R$ %8.2f" + fimDeLinha,
-                    sequencia, cada.getCarro().getDescricao(),
-                    cada.getCarro().getAno(), valorCorrente);
+            resultado += String.format(
+                "%02d. %-20s %4d R$ %8.2f" + fimDeLinha,
+                sequencia,
+                cada.getCarro().getDescricao(),
+                cada.getCarro().getAno(),
+                valorCorrente
+            );
             valorTotal += valorCorrente;
         } // while
 
         // adiciona rodapé
         resultado += "============================================" + fimDeLinha;
         resultado += String.format("Valor Acumulado em diárias............: R$ %8.2f" + fimDeLinha, valorTotal);
-        resultado += "Voce acumulou " + pontosDeAlugadorFrequente +
-                " pontos de alugador frequente";
+        resultado += "Voce acumulou " + pontosDeAlugadorFrequente + " pontos de alugador frequente";
         return resultado;
     }
 }

@@ -1,6 +1,7 @@
 package lista.lista1_3_3.rentcars;
 
 public class Locacao {
+
     private Automovel carro;
     private int diasAlugado;
 
@@ -24,11 +25,9 @@ public class Locacao {
             case Automovel.BASICO: // R$ 90.00 por dia
                 valorLocacao += diasAlugado * 90.00;
                 break;
-
             case Automovel.FAMILIA: // R$ 130.00 por dia
                 valorLocacao += diasAlugado * 130.00;
                 break;
-
             case Automovel.LUXO: // R$ 200.00 por dia.
                 valorLocacao += diasAlugado * 200.00;
                 // Acima de 4 diárias tem 10% de desconto
@@ -36,7 +35,7 @@ public class Locacao {
                     valorLocacao *= 0.9;
                 }
                 break;
-        }    
+        }
         return valorLocacao;
     }
 

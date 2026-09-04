@@ -47,6 +47,17 @@ public class Cliente {
         return resultado;
     }
 
+    public String extratoHTML() {
+final String fimDeLinha = System.getProperty("line.separator");
+int sequencia = 0;
+Iterator<Locacao> locacoes = carrosAlugados.iterator();
+String resultado = "<html><body>"+ fimDeLinha;
+resultado = String.format("<H2>Registro de Locacoes de <EM> %s
+</EM></H2>", getNome()) + fimDeLinha;
+resultado += "<table
+border=\"1\"><tr><th>Seq</th><th>Automóvel</th><th>Ano</th><th>Diárias</th><t
+h>Valor</th></tr>" + fimDeLinha;
+
     public int getPontosAlugadorFrequente() {
         int pontosDeAlugadorFrequente = 0;
         Iterator<Locacao> locacoes = carrosAlugados.iterator();

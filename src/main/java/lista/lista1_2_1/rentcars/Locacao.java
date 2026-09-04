@@ -1,6 +1,7 @@
 package lista.lista1_2_1.rentcars;
 
 public class Locacao {
+
     private Automovel carro;
     private int diasAlugado;
 
