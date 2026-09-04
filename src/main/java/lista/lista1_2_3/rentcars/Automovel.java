@@ -1,4 +1,4 @@
-package lista.lista1_3_3.rentcars;
+package lista.lista1_2_3.rentcars;
 
 public class Automovel {
 

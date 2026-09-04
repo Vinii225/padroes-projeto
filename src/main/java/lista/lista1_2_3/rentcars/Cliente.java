@@ -1,4 +1,4 @@
-package lista.lista1_3_3.rentcars;
+package lista.lista1_2_3.rentcars;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -48,15 +48,31 @@ public class Cliente {
     }
 
     public String extratoHTML() {
-final String fimDeLinha = System.getProperty("line.separator");
-int sequencia = 0;
-Iterator<Locacao> locacoes = carrosAlugados.iterator();
-String resultado = "<html><body>"+ fimDeLinha;
-resultado = String.format("<H2>Registro de Locacoes de <EM> %s
-</EM></H2>", getNome()) + fimDeLinha;
-resultado += "<table
-border=\"1\"><tr><th>Seq</th><th>Automóvel</th><th>Ano</th><th>Diárias</th><t
-h>Valor</th></tr>" + fimDeLinha;
+        final String fimDeLinha = System.getProperty("line.separator");
+        int sequencia = 0;
+
+        Iterator<Locacao> locacoes = carrosAlugados.iterator();
+        String resultado = "<html><body>" + fimDeLinha;
+        resultado += String.format("<H2>Registro de Locacoes de <EM>%s</EM></H2>" + fimDeLinha, getNome());
+        resultado += "<table border=\"1\"><tr><th>Seq</th><th>Automóvel</th><th>Ano</th><th>Diárias</th><th>Valor</th></tr>"
+                + fimDeLinha;
+
+        while (locacoes.hasNext()) {
+            Locacao locacao = locacoes.next();
+
+            sequencia++;
+            resultado += String.format("<tr><td>%02d</td><td>%s</td><td>%d</td><td>%d</td><td>R$ %8.2f</td></tr>" + fimDeLinha,
+                    sequencia, locacao.getCarro().getDescricao(), locacao.getCarro().getAno(),
+                    locacao.getDiasAlugado(), locacao.valorLocacao());
+        } // while
+
+        resultado += "</table>" + fimDeLinha;
+        resultado += String.format("<P>Valor Acumulado em diárias: R$ %8.2f</P>" + fimDeLinha, getValorTotal());
+        resultado += String.format("<P>Voce acumulou %d pontos de alugador frequente</P>" + fimDeLinha,
+                getPontosAlugadorFrequente());
+        resultado += "</body></html>";
+        return resultado;
+    }
 
     public int getPontosAlugadorFrequente() {
         int pontosDeAlugadorFrequente = 0;
