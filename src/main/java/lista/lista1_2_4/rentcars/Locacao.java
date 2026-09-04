@@ -19,32 +19,10 @@ public class Locacao {
     }
 
     public double valorLocacao() {
-        double valorLocacao = 0.0;
-
-        switch (carro.getCodigoDoPreco()) {
-            case Automovel.BASICO: // R$ 90.00 por dia
-                valorLocacao += diasAlugado * 90.00;
-                break;
-            case Automovel.FAMILIA: // R$ 130.00 por dia
-                valorLocacao += diasAlugado * 130.00;
-                break;
-            case Automovel.LUXO: // R$ 200.00 por dia.
-                valorLocacao += diasAlugado * 200.00;
-                // Acima de 4 diárias tem 10% de desconto
-                if (diasAlugado > 4) {
-                    valorLocacao *= 0.9;
-                }
-                break;
-        }
-        return valorLocacao;
+        return carro.valorLocacao(diasAlugado);
     }
 
     public int pontosLocacao() {
-        int pontos = 1;
-
-        if (carro.getCodigoDoPreco() == Automovel.LUXO && diasAlugado > 2) {
-            pontos += 2;
-        }
-        return pontos;
+        return carro.pontosLocacao(diasAlugado);
     }
 }
